@@ -5,7 +5,7 @@ import pins from '../pins/pins';
 
 const seePinDiv = (e) => {
   const boardId = e.target.closest('.card').id;
-  console.error('you clicked a button', boardId);
+  // console.error('you clicked a button', boardId);
   document.getElementById('boards-page').classList.add('hide');
   document.getElementById('pins-page').classList.remove('hide');
   pins.initPins(boardId);

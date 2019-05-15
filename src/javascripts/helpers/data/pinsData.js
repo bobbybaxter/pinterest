@@ -5,7 +5,7 @@ const loadPinsFromBoard = boardId => new Promise((resolve, reject) => {
     .then((resp) => {
       const allPins = resp.data.pins;
       // filter the pins
-      console.error('boardId inside pins', boardId);
+      // console.error('boardId inside pins', boardId);
       const matchingPins = allPins.filter(pin => pin.boardId === boardId);
       // resolve the filtered pins
       resolve(matchingPins);
