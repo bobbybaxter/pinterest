@@ -1,5 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
+@import "../javascripts/components/boards/boards.scss";
 
 body {
   background-color: lightblue;
+}
+
+.hide {
+  display: none;
 }

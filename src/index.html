@@ -6,9 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pinterest</title>
 </head>
-<body>
-  <h1>hi</h1>
-  <button type="button" class="btn btn-danger">help</button>
-
+<body class="text-center">
+  <div id="boards-page" class="page-container">
+    <h1>My Boards</h1>
+    <div id="user-boards" class="d-flex flex-wrap"></div>
+  </div>
+  <div id="pins-page" class="page-container hide">
+    <button type="button" class="btn btn-secondary float-left" id="toBoardsBtn">Back to Boards</button>
+    <h1>Pins</h1>
+    <div id="pins-on-board" class="d-flex flex-wrap"></div>
+  </div>
 </body>
 </html>
