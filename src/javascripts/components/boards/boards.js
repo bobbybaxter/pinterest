@@ -2,6 +2,7 @@ import $ from 'jquery';
 import boardData from '../../helpers/data/boardsData';
 import util from '../../helpers/util';
 import pins from '../pins/pins';
+import pinsData from '../../helpers/data/pinsData';
 
 const seePinDiv = (e) => {
   const boardId = e.target.closest('.card').id;
@@ -18,7 +19,7 @@ const bindEvents = () => {
   }
 };
 
-const boardBuilder = (boards) => {
+const writeBoards = (boards) => {
   let domString = '';
   $.each(boards, (i) => {
     // card background
@@ -28,7 +29,7 @@ const boardBuilder = (boards) => {
     // card content
     domString += '<div class="card-body">';
     domString += `<h5>${boards[i].name}</h5>`;
-    domString += '<a class="btn btn-outline-light see-pins"># of pins</a>';
+    domString += `<a class="btn btn-outline-light see-pins">${boards[i].pins.length} of pins</a>`;
     domString += '</div>';
     domString += '</div>';
     domString += '</div>';
@@ -39,11 +40,11 @@ const boardBuilder = (boards) => {
 
 const initBoards = () => {
   boardData.loadBoards()
-    .then((resp) => {
-      boardBuilder(resp.data.boards);
-      // console.error('response', resp.data.boards);
+    .then(resp => pinsData.getPinsForEachBoard(resp.data.boards))
+    .then((boardsWithPins) => {
+      writeBoards(boardsWithPins);
     })
-    .catch(err => console.error('error from loadBoards', err));
+    .catch(err => console.error('error from initBoards requests', err));
 };
 
 export default { initBoards };
