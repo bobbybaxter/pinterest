@@ -13,4 +13,19 @@ const loadPinsFromBoard = boardId => new Promise((resolve, reject) => {
     .catch(err => reject(err));
 });
 
-export default { loadPinsFromBoard };
+const getPinsForEachBoard = boards => new Promise((resolve, reject) => {
+  axios.get('../db/pins.json')
+    .then((resp) => {
+      const { pins } = resp.data;
+      const boardsWithPins = boards.map((board) => {
+        const newBoard = board;
+        const matchingPins = pins.filter(pin => pin.boardId === board.id);
+        newBoard.pins = matchingPins;
+        return newBoard;
+      });
+      resolve(boardsWithPins);
+    })
+    .catch(err => reject(err));
+});
+
+export default { loadPinsFromBoard, getPinsForEachBoard };
